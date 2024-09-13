@@ -5,25 +5,26 @@ import { LayerStore } from "@/zustand/layerStore";
 
 export default function Home() {
   return (
-    <main>
-      <ImageStore.Provider initialValue={{ generating: false }}>
-        <LayerStore.Provider
-          initialValue={{
-            layerComparisonMode: false,
-            layers: [
-              {
-                id: crypto.randomUUID(),
-                url: "",
-                height: 0,
-                width: 0,
-                publicId: "",
-              },
-            ],
-          }}
-        >
+    <ImageStore.Provider initialValue={{ generating: false }}>
+      <LayerStore.Provider
+        initialValue={{
+          layerComparisonMode: false,
+          layers: [
+            {
+              id: crypto.randomUUID(),
+              url: "",
+              height: 0,
+              width: 0,
+              publicId: "",
+            },
+          ],
+        }}
+      >
+        <main className="h-full">
           <Editor />
-        </LayerStore.Provider>
-      </ImageStore.Provider>
-    </main>
+
+        </main>
+      </LayerStore.Provider>
+    </ImageStore.Provider>
   );
 }

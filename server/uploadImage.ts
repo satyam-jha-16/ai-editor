@@ -10,8 +10,8 @@ type UploadResponse =
     error?: never;
   }
   | {
-    success?: never;
     error: string;
+    success?: never;
   };
 
 cloudinary.config({
@@ -26,7 +26,7 @@ const formData = z.object({
 
 export const uploadImage = actionClient
   .schema(formData)
-  .action(async ({ parsedInput: { image } }) => {
+  .action(async ({ parsedInput: { image } }) : Promise<UploadResponse> => {
     const formImage = image.get("image");
     if (!formImage) {
       return { error: "no image was provided" };
@@ -43,6 +43,9 @@ export const uploadImage = actionClient
         const uploadStream = cloudinary.uploader.upload_stream(
           {
             upload_preset: process.env.CLOUDINARY_PRESET,
+            use_filename: true,
+            unique_filename: false,
+            filename_override: file.name,
           },
           (error, result) => {
             if (error || !result) {
@@ -54,7 +57,7 @@ export const uploadImage = actionClient
         );
         uploadStream.end(buffer);
       });
-    } catch (error) {
-      return { error: error };
+    } catch (error ) {
+      return { error: "Error processing file" };
     }
   });
