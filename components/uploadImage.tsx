@@ -47,7 +47,7 @@ export default function UploadImage() {
           updateLayer({
             id: activeLayer.id,
             url: res.data.success.url,
-            name: res.data.success.name,
+            name: res.data.success.display_name || res.data.success.original_filename,
             height: res.data.success.height,
             width: res.data.success.width,
             publicId: res.data.success.public_id,
@@ -56,6 +56,7 @@ export default function UploadImage() {
           });
           setActiveLayer(activeLayer.id);
           setGenerating(false);
+          console.log(res.data.success)
         }
         if (res?.data?.error){
           console.log(res.data.error)
@@ -68,7 +69,7 @@ if(!activeLayer.url)
   return (
     <Card {...getRootProps()} className={`border-2 border-dashed border-gray-300 p-6 m-6 text-center transition-colors duration-300 hover:border-gray-100 ${isDragActive ? 'border-green-200 bg-green-50' : 'border-gray-300'}`}>
       <CardContent className="flex flex-col items-center">
-        <input {...getInputProps()} className="hidden" type="text" />
+        <input {...getInputProps()} className="hidden" type="file" />
         <div className={`p-10 border-2 border-dashed rounded-lg transition-colors duration-300 `}>
 
           <p className="text-2xl mb-4">
