@@ -1,17 +1,19 @@
 "use client";
 
+import uploadAnimation from "@/public/animations/image-upload.json";
 import { uploadImage } from "@/server/uploadImage";
-import { useDropzone } from "react-dropzone";
-import { Card, CardContent } from "./ui/card";
 import { useImageStore } from "@/zustand/imageStore";
 import { useLayerStore } from "@/zustand/layerStore";
+import Lottie from "lottie-react";
+import { useDropzone } from "react-dropzone";
+import { Card, CardContent } from "./ui/card";
 
 export default function UploadImage() {
   const setGenerating = useImageStore((state) => state.setGenerating);
   const activeLayer = useLayerStore((state) => state.activeLayer);
   const updateLayer = useLayerStore((state) => state.updateLayer);
   const setActiveLayer = useLayerStore((state) => state.setActiveLayer);
-    
+
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     maxFiles: 1,
     accept: {
@@ -38,11 +40,11 @@ export default function UploadImage() {
           format: "",
           resourceType: "image",
         });
-        
+
         setActiveLayer(activeLayer.id);
         // STATE MANAGEMENT HERE
         const res = await uploadImage({ image: formData });
-    
+
         if (res?.data?.success){
           updateLayer({
             id: activeLayer.id,
@@ -68,10 +70,15 @@ export default function UploadImage() {
 if(!activeLayer.url)
   return (
     <Card {...getRootProps()} className={`border-2 border-dashed border-gray-300 p-6 m-6 text-center transition-colors duration-300 hover:border-gray-100 ${isDragActive ? 'border-green-200 bg-green-50' : 'border-gray-300'}`}>
-      <CardContent className="flex flex-col items-center">
+      <CardContent className="flex flex-col items-center justify-center">
         <input {...getInputProps()} className="hidden" type="file" />
         <div className={`p-10 border-2 border-dashed rounded-lg transition-colors duration-300 `}>
-
+        <Lottie
+          animationData={uploadAnimation}
+          loop
+          autoplay
+          style={{ width: "100px", height: "100px" }}
+          />
           <p className="text-2xl mb-4">
             {isDragActive
               ? "Drop your file here!"
@@ -80,6 +87,7 @@ if(!activeLayer.url)
           <p className="text-sm text-gray-500">Supported Formats are .png, .jpg, .jpeg, .webp</p>
         </div>
       </CardContent>
+
     </Card>
   );
 }

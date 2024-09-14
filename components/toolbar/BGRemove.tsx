@@ -3,7 +3,7 @@
 import { bgRemove } from "@/server/bgRemove";
 import { useImageStore } from "@/zustand/imageStore";
 import { useLayerStore } from "@/zustand/layerStore";
-import { Image, ImageOff } from "lucide-react";
+import { ImageOff } from "lucide-react";
 import { Button } from "../ui/button";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 
@@ -19,7 +19,7 @@ export default function BGRemove() {
   return (
     <Popover>
       <PopoverTrigger disabled={!activeLayer?.url} asChild>
-        <Button variant="outline" className="p-8">
+        <Button variant="outline" className="p-2 px-20">
           <span className="flex gap-1 items-center justify-center text-xs font-medium">
             Background Removal <ImageOff size={20} />
           </span>
@@ -60,7 +60,7 @@ export default function BGRemove() {
               setGenerating(false);
               setActiveLayer(newLayerId);
             }
-            if(res?.serverError){
+            if (res?.serverError) {
               setGenerating(false);
             }
           }}

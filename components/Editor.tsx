@@ -6,6 +6,7 @@ import ActiveImage from "./ActiveImage";
 import UploadImageForm from "./UploadImageForm";
 import { useLayerStore } from "@/zustand/layerStore";
 import ImageToolbar from "./toolbar/ImageToolbar";
+import Loading from "./loading";
 
 export default function Editor() {
   const activeLayer = useLayerStore((state) => state.activeLayer);
@@ -15,11 +16,12 @@ export default function Editor() {
         <div className="pb-12 text-center">
           <ModeToggle />
         </div>
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-1">
             {activeLayer.resourceType === "image" ? <ImageToolbar/> : null}
         </div>
       </div>
       <UploadImageForm />
+      <Loading />
       <ActiveImage />
       <Layers />
     </div>

@@ -25,7 +25,7 @@ export default function BGReplace() {
   return (
     <Popover>
       <PopoverTrigger disabled={!activeLayer?.url} asChild>
-        <Button variant="outline" className="p-8">
+        <Button variant="outline" className="p-2 px-20">
           <span className="flex gap-1 items-center justify-center text-xs font-medium">
             Background Replace <Image size={20} />
           </span>

@@ -1,5 +1,7 @@
 import BGRemove from "./BGRemove";
 import BGReplace from "./BGReplace";
+import ExtractPart from "./ExtractPart";
+import GenFill from "./GenFill";
 import GenRemove from "./GenRemove";
 
 export default function ImageToolbar () {
@@ -8,6 +10,8 @@ export default function ImageToolbar () {
     <GenRemove /> 
     <BGRemove />
     <BGReplace />
+      <GenFill />
+        <ExtractPart />
     </>
   )
 }
