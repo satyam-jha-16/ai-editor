@@ -10,10 +10,23 @@ import loadingAnimation from "@/public/animations/loading.json"
 
 export default function Home() {
   const router = useRouter();
-  const { user } = useKindeBrowserClient();
-  if (!user) {
-    router.push("/api/auth/login");
+  const { user, isLoading } = useKindeBrowserClient(); // Added isLoading
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  useEffect(() => {
+    if (!isLoading) {
+      if (!user) {
+        router.push("/api/auth/login");
+      } else {
+        setIsAuthenticated(true);
+      }
+    }
+  }, [user, isLoading, router]);
+
+  if (isLoading || !isAuthenticated) {
+    return <Lottie animationData={loadingAnimation} loop={true} />;
   }
+
   const userId = user?.id;
 
   return (
