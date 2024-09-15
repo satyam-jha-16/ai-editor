@@ -1,3 +1,4 @@
+import ExportAsset from "../ExportAsset";
 import BGRemove from "./BGRemove";
 import BGReplace from "./BGReplace";
 import ExtractPart from "./ExtractPart";

@@ -21,6 +21,7 @@ export default function UploadImage() {
       "image/jpg": [".jpg"],
       "image/jpeg": [".jpeg"],
       "image/webp": [".webp"],
+      "image/avif" : [".avif"]
     },
     onDrop: async (acceptedFiles, fileRejections) => {
       if (acceptedFiles.length > 0) {
@@ -69,10 +70,10 @@ export default function UploadImage() {
   });
 if(!activeLayer.url)
   return (
-    <Card {...getRootProps()} className={`border-2 border-dashed border-gray-300 p-6 m-6 text-center transition-colors duration-300 hover:border-gray-100 ${isDragActive ? 'border-green-200 bg-green-50' : 'border-gray-300'}`}>
+    <Card {...getRootProps()} className={`border-2 border-dashed border-gray-300 p-6 m-6 text-center transition-colors duration-300 hover:border-gray-100 ${isDragActive ? 'border-green-200 dark:border-green-300 bg-green-50' : 'border-gray-300'}`}>
       <CardContent className="flex flex-col items-center justify-center">
         <input {...getInputProps()} className="hidden" type="file" />
-        <div className={`p-10 border-2 border-dashed rounded-lg transition-colors duration-300 `}>
+        <div className={`p-10 border-2 border-dashed rounded-lg transition-colors duration-300 flex flex-col items-center justify-center `}>
         <Lottie
           animationData={uploadAnimation}
           loop
