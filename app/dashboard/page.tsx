@@ -10,24 +10,11 @@ import loadingAnimation from "@/public/animations/loading.json"
 
 export default function Home() {
   const router = useRouter();
-  const { isLoading, isAuthenticated, user } = useKindeBrowserClient();
-  const [userId, setUserId] = useState<string | null>(null);
-
-  useEffect(() => {
-    if (!isLoading && !isAuthenticated) {
-      router.push("/api/auth/login");
-    } else if (isAuthenticated && user) {
-      setUserId(user.id);
-    }
-  }, [isLoading, isAuthenticated, router, user]);
-
-  if (isLoading || !userId) {
-    return <div className="flex justify-center items-center"> <Lottie className="w-36" animationData={loadingAnimation} /></div>;
+  const { user } = useKindeBrowserClient();
+  if (!user) {
+    router.push("/api/auth/login");
   }
-
-  if (!isAuthenticated) {
-    return null; // or a custom unauthorized message
-  }
+  const userId = user?.id;
 
   return (
     <ImageStore.Provider initialValue={{ generating: false }}>
@@ -43,7 +30,7 @@ export default function Home() {
               publicId: "",
             },
           ],
-          userId: userId,
+          userId: userId!,
         }}
       >
         <main className="h-full">
