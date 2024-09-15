@@ -3,6 +3,7 @@ import { useStore } from "zustand"
 import { persist } from "zustand/middleware"
 import { createStore } from "zustand/vanilla"
 import { createZustandContext } from "./zustandContext"
+import { createJSONStorage } from "zustand/middleware"
 
 export type Layer = {
   publicId?: string
@@ -36,6 +37,7 @@ type State = {
 const getStore = (initialState: {
   layers: Layer[]
   layerComparisonMode: boolean
+  userId: string
 }) => {
   return createStore<State>()(
     persist(
@@ -94,7 +96,10 @@ const getStore = (initialState: {
             }
           }),
       }),
-      { name: "layerStore" }
+      {
+        name: `layerStore_${initialState.userId}`,
+        storage: createJSONStorage(() => localStorage),
+      }
     )
   )
 }
