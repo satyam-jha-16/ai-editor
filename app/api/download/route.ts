@@ -5,7 +5,7 @@ import checkImageProcessing from "@/lib/checkImageProcessing"
 cloudinary.v2.config({
   api_secret: process.env.CLOUDINARY_SECRET,
   api_key: process.env.CLOUDINARY_KEY,
-  cname: process.env.CLOUDINARY_NAME,
+  cloud_name: process.env.CLOUDINARY_NAME, // Fixed typo: cname -> cloud_name
 })
 
 export async function GET(request: NextRequest) {
