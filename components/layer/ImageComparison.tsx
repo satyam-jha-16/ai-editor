@@ -4,6 +4,7 @@ import { CircleSlash2 } from "lucide-react";
 import { ReactCompareSlider, ReactCompareSliderImage } from 'react-compare-slider';
 
 export default function ImageComparison({ layers }: { layers: Layer[] }) {
+  console.log(layers);
   if (layers.length === 0)
     return <div>no layers selected for comparison <CircleSlash2 /></div>;
 

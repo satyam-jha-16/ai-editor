@@ -5,7 +5,7 @@ import checkImageProcessing from "@/lib/checkImageProcessing"
 cloudinary.v2.config({
   api_secret: process.env.CLOUDINARY_SECRET,
   api_key: process.env.CLOUDINARY_KEY,
-  cloud_name: process.env.CLOUDINARY_NAME, // Fixed typo: cname -> cloud_name
+  cloud_name: 'dberyjqrn', // Fixed typo: cname -> cloud_name
 })
 
 export async function GET(request: NextRequest) {
@@ -66,7 +66,7 @@ export async function GET(request: NextRequest) {
       filename: `${publicId}.${quality}.${format}`,
     })
   } catch (error) {
-    console.error("Error generating image URL:", error)
+    console.log("Error generating image URL:", error)
     return NextResponse.json(
       { error: "Error generating image URL" },
       { status: 500 }

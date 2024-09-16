@@ -17,6 +17,8 @@ import { useLayerStore } from "@/zustand/layerStore"
 export default function ExportAsset({ resource }: { resource: string }) {
   const activeLayer = useLayerStore((state) => state.activeLayer)
   const [selected, setSelected] = useState("original")
+  console.log("activeLayer", activeLayer)
+  console.log("selected", selected)
   const handleDownload = async () => {
     if (activeLayer?.publicId) {
       try {
@@ -27,7 +29,7 @@ export default function ExportAsset({ resource }: { resource: string }) {
           throw new Error("Failed to fetch image URL")
         }
         const data = await res.json()
-        console.log(data)
+        console.log("data", data)
         if (data.error) {
           throw new Error(data.error)
         }
