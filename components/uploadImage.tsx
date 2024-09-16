@@ -51,7 +51,7 @@ export default function UploadImage() {
         if (res?.data?.success) {
           updateLayer({
             id: activeLayer.id,
-            url: res.data.success.url,
+            url: res.data.success.secure_url,
             name: res.data.success.display_name || res.data.success.original_filename,
             height: res.data.success.height,
             width: res.data.success.width,

@@ -37,12 +37,12 @@ export default function UploadVideo() {
         const res = await uploadVideo({ video: formData });
 
         if (res?.data?.success) {
-          const videoUrl = res.data.success.url;
+          const videoUrl = res.data.success.secure_url;
           const thumbnailUrl = videoUrl.replace(/\.[^/.]+$/, ".jpg");
           console.log(thumbnailUrl)
           updateLayer({
             id: activeLayer.id,
-            url: res.data.success.url,
+            url: res.data.success.secure_url,
             width: res.data.success.width,
             height: res.data.success.height,
             name: res.data.success.display_name || res.data.success.public_id,
