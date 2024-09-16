@@ -18,12 +18,12 @@ export default function Editor() {
         <div className="pb-12 text-center">
           <ModeToggle />
         </div>
-          <div className="flex flex-col gap-1">
-            {activeLayer.resourceType === "image" ? <ImageToolbar/> : null}
-            {activeLayer.resourceType === "video" ? <VideoToolbar/> : null}
-              {activeLayer.resourceType && (
-                          <ExportAsset resource={activeLayer.resourceType} />
-                        )}
+        <div className="flex flex-col gap-1">
+          {activeLayer.resourceType === "image" ? <ImageToolbar /> : null}
+          {activeLayer.resourceType === "video" ? <VideoToolbar /> : null}
+          {activeLayer.resourceType && (
+            <ExportAsset resource={activeLayer.resourceType} />
+          )}
         </div>
       </div>
       <UploadImageForm />

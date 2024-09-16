@@ -1,5 +1,5 @@
-"use client"
-
+'use client'
+// CHECKOUT THIS FILE
 import {
   Dialog,
   DialogDescription,
@@ -11,7 +11,9 @@ import {
 import loadingAnimation from "@/public/animations/loading.json"
 import { useImageStore } from "@/zustand/imageStore"
 import { useLayerStore } from "@/zustand/layerStore"
-import Lottie from "lottie-react"
+import dynamic from "next/dynamic"
+
+const Lottie = dynamic(() => import("lottie-react"), { ssr: false })
 
 export default function Loading() {
   const generating = useImageStore((state) => state.generating)

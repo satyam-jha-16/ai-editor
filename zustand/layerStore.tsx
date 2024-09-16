@@ -1,3 +1,4 @@
+"use client"
 import React from "react"
 import { useStore } from "zustand"
 import { persist } from "zustand/middleware"

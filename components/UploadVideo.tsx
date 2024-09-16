@@ -4,9 +4,10 @@ import uploadAnimation from "@/public/animations/video-upload.json";
 import { uploadVideo } from "@/server/uploadVideo";
 import { useImageStore } from "@/zustand/imageStore";
 import { useLayerStore } from "@/zustand/layerStore";
-import Lottie from "lottie-react";
 import { useDropzone } from "react-dropzone";
 import { Card, CardContent } from "./ui/card";
+import dynamic from "next/dynamic";
+const Lottie = dynamic(() => import("lottie-react"), { ssr: false })
 
 export default function UploadVideo() {
   const setGenerating = useImageStore((state) => state.setGenerating);
@@ -17,10 +18,10 @@ export default function UploadVideo() {
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     maxFiles: 1,
     accept: {
-       "video/mp4": [".mp4", ".MP4"],
-     "video/webm": [".webm", ".WEBM"],
+      "video/mp4": [".mp4", ".MP4"],
+      "video/webm": [".webm", ".WEBM"],
       "video/mov": [".mov", ".MOV"],
-     "video/avi": [".avi", ".AVI"],
+      "video/avi": [".avi", ".AVI"],
       "video/ts": [".ts", ".ts"],
     },
     onDrop: async (acceptedFiles, fileRejections) => {
@@ -38,7 +39,7 @@ export default function UploadVideo() {
         if (res?.data?.success) {
           const videoUrl = res.data.success.url;
           const thumbnailUrl = videoUrl.replace(/\.[^/.]+$/, ".jpg");
-console.log(thumbnailUrl) 
+          console.log(thumbnailUrl)
           updateLayer({
             id: activeLayer.id,
             url: res.data.success.url,

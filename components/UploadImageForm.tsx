@@ -37,9 +37,8 @@ export default function UploadImageForm() {
             <CardContent className="flex items-center  space-x-2 p-0">
               <RadioGroupItem value="image" id="image-mode" hidden />
               <Label
-                className={`${
-                  selectedType === "image" ? "text-primary" : null
-                }`}
+                className={`${selectedType === "image" ? "text-primary" : null
+                  }`}
                 htmlFor="image-mode"
               >
                 Image Mode
@@ -60,9 +59,8 @@ export default function UploadImageForm() {
             <CardContent className="flex items-center  space-x-2 p-0">
               <RadioGroupItem value="video" id="video-mode" hidden />
               <Label
-                className={`${
-                  selectedType === "video" ? "text-primary" : null
-                }`}
+                className={`${selectedType === "video" ? "text-primary" : null
+                  }`}
                 htmlFor="video-mode"
               >
                 Video Mode
